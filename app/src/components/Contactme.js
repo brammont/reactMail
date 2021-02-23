@@ -8,24 +8,43 @@ export default function ContactUs() {
   function sendEmail(e) {
     e.preventDefault();
 
-    emailjs.sendForm('service_eqtlenj', 'template_rdjdngf', e.target, 'user_TcLWCFgKMgYUHBHO3nQrY')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-  }
+    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
+    .then((result) => {
+      alert("Mensaje enviado! 👍");
+     
+  }, (error) => {
+      alert(error.message)
+      
+  });
+  e.target.reset()
+
+
+}
 
   return (
-    <form className="contact-form" onSubmit={sendEmail}>
-      <input type="hidden" name="contact_number" />
-      <label>Name</label>
-      <input type="text" name="user_name" />
-      <label>Email</label>
-      <input type="email" name="user_email" />
-      <label>Message</label>
-      <textarea name="message" />
-      <input type="submit" value="Send" />
-    </form>
+    <div>
+    <div className="container">
+      <h2 className="h2">CONTACTO</h2>
+      <form className="contact-form" onSubmit={sendEmail}>
+      <div className="row pt-5 mx-auto">
+        <div className="col-lg-8 col-sm-12 form-group mx-auto">
+          <label>Nombre</label>
+          <input type="text" autoFocus className="form-control" required placeholder="Nombre" name="user_name" />
+        </div>
+      </div>
+      <div className="col-lg-8 col-sm-12 form-group pt-1 mx-auto">
+        <label>Email</label>
+        <input type="email" name="user_email" />
+      </div>
+      <div className="col-lg-8 col-sm-12 form-group pt-1 mx-auto">
+        <label>Mensaje</label>
+        <textarea lassName="form-control" id="" cols="30" rows="8" required placeholder="Su Mensaje" name="message" />
+      </div>
+      <div className="col-lg-8 col-sm-12 pt-3 mx-auto">
+        <input type="submit" className="btn btn-info" value="Enviar"></input>
+      </div>       
+      </form>
+    </div>
+  </div>
   );
 }
